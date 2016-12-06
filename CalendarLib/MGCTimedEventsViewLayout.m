@@ -42,7 +42,24 @@
 // see http://stackoverflow.com/questions/13770484/large-uicollectionviewcells-disappearing-with-custom-layout
 // or https://github.com/mattjgalloway/CocoaBugs/blob/master/UICollectionView-MissingCells/README.md
 
-#define BUG_FIX
+//#define BUG_FIX   // cannot reproduce this bug anymore
+
+
+static NSString* const DimmingViewsKey = @"DimmingViewsKey";
+static NSString* const EventCellsKey = @"EventCellsKey";
+
+
+@implementation MGCTimedEventsViewLayoutInvalidationContext
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.invalidateDimmingViews = NO;
+        self.invalidateEventCells = YES;
+    }
+    return self;
+}
+
+@end
 
 
 @interface MGCTimedEventsViewLayout()
@@ -62,6 +79,7 @@
 - (instancetype)init {
 	if (self = [super init]) {
 		_minimumVisibleHeight = 15.;
+        _ignoreNextInvalidation = NO;
 	}
 	return self;
 }
@@ -75,38 +93,77 @@
 	return _layoutInfo;
 }
 
-- (NSArray*)layoutAttributesForSection:(NSUInteger)section
+- (NSArray*)layoutAttributesForDimmingViewsInSection:(NSUInteger)section
 {
-	NSArray *sectionAttribs = [self.layoutInfo objectForKey:@(section)];
-	if (!sectionAttribs) {
-		
-		NSInteger numItems = [self.collectionView numberOfItemsInSection:section];
-		NSMutableArray *attribs = [NSMutableArray arrayWithCapacity:numItems];
-		
-		for (NSInteger item = 0; item < numItems; item++) {
-			NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
-			
-            CGRect rect = [self.delegate collectionView:self.collectionView layout:self rectForEventAtIndexPath:indexPath];
-            if (!CGRectIsNull(rect)) {
-                MGCEventCellLayoutAttributes *cellAttribs = [MGCEventCellLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-                
-                rect.origin.x = self.dayColumnSize.width * indexPath.section;
-                rect.size.width = self.dayColumnSize.width;
-                rect.size.height = fmax(self.minimumVisibleHeight, rect.size.height);
-                
-                cellAttribs.frame = MGCAlignedRect(CGRectInset(rect , 0, 1));
-                cellAttribs.visibleHeight = cellAttribs.frame.size.height;
-                
-                [attribs addObject:cellAttribs];
-            }
+    NSArray *dimmingRects = [self.delegate collectionView:self.collectionView layout:self dimmingRectsForSection:section];
+
+    NSMutableArray *layoutAttribs = [NSMutableArray arrayWithCapacity:dimmingRects.count];
+    
+    for (NSInteger item = 0; item < dimmingRects.count; item++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+        
+        CGRect rect = [dimmingRects[item] CGRectValue];
+        if (!CGRectIsNull(rect)) {
+            UICollectionViewLayoutAttributes *viewAttribs = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:DimmingViewKind withIndexPath:indexPath];
+            rect.origin.x = self.dayColumnSize.width * indexPath.section;
+            rect.size.width = self.dayColumnSize.width;
+            
+            viewAttribs.frame = MGCAlignedRect(rect);
+        
+            [layoutAttribs addObject:viewAttribs];
         }
-		
-		sectionAttribs = [self adjustLayoutForOverlappingCells:attribs inSection:section];
-		
-		[self.layoutInfo setObject:sectionAttribs forKey:@(section)];
-	}
-	
-	return sectionAttribs;
+    }
+    
+    return layoutAttribs;
+}
+
+- (NSArray*)layoutAttributesForEventCellsInSection:(NSUInteger)section
+{
+    NSInteger numItems = [self.collectionView numberOfItemsInSection:section];
+    NSMutableArray *layoutAttribs = [NSMutableArray arrayWithCapacity:numItems];
+    
+    for (NSInteger item = 0; item < numItems; item++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+        
+        CGRect rect = [self.delegate collectionView:self.collectionView layout:self rectForEventAtIndexPath:indexPath];
+        if (!CGRectIsNull(rect)) {
+            MGCEventCellLayoutAttributes *cellAttribs = [MGCEventCellLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+            
+            rect.origin.x = self.dayColumnSize.width * indexPath.section;
+            rect.size.width = self.dayColumnSize.width;
+            rect.size.height = fmax(self.minimumVisibleHeight, rect.size.height);
+            
+            cellAttribs.frame = MGCAlignedRect(CGRectInset(rect , 0, 1));
+            cellAttribs.visibleHeight = cellAttribs.frame.size.height;
+            cellAttribs.zIndex = 1;  // should appear above dimming views
+            
+            [layoutAttribs addObject:cellAttribs];
+        }
+    }
+    
+    return [self adjustLayoutForOverlappingCells:layoutAttribs inSection:section];
+}
+
+- (NSDictionary*)layoutAttributesForSection:(NSUInteger)section
+{
+    NSMutableDictionary *sectionAttribs = [self.layoutInfo objectForKey:@(section)];
+    
+    if (!sectionAttribs) {
+        sectionAttribs = [NSMutableDictionary dictionary];
+    }
+    
+    if (![sectionAttribs objectForKey:DimmingViewsKey]) {
+        NSArray *dimmingViewsAttribs = [self layoutAttributesForDimmingViewsInSection:section];
+        [sectionAttribs setObject:dimmingViewsAttribs forKey:DimmingViewsKey];
+    }
+    if (![sectionAttribs objectForKey:EventCellsKey]) {
+        NSArray *cellsAttribs = [self layoutAttributesForEventCellsInSection:section];
+        [sectionAttribs setObject:cellsAttribs forKey:EventCellsKey];
+    }
+    
+    [self.layoutInfo setObject:sectionAttribs forKey:@(section)];
+   
+    return sectionAttribs;
 }
 
 - (NSArray*)adjustLayoutForOverlappingCells:(NSArray*)attributes inSection:(NSUInteger)section
@@ -179,22 +236,23 @@
 	return [MGCEventCellLayoutAttributes class];
 }
 
++ (Class)invalidationContextClass
+{
+    return [MGCTimedEventsViewLayoutInvalidationContext class];
+}
+
 - (MGCEventCellLayoutAttributes*)layoutAttributesForItemAtIndexPath:(NSIndexPath*)indexPath
 {
 	//NSLog(@"layoutAttributesForItemAtIndexPath %@", indexPath);
 	
-	NSArray *attribs = [self layoutAttributesForSection:indexPath.section];
+	NSArray *attribs = [[self layoutAttributesForSection:indexPath.section] objectForKey:EventCellsKey];
 	return [attribs objectAtIndex:indexPath.item];
 }
 
-- (MGCEventCellLayoutAttributes*)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath*)indexPath
+- (UICollectionViewLayoutAttributes*)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath
 {
-	return (MGCEventCellLayoutAttributes*)[self layoutAttributesForItemAtIndexPath:indexPath];
-}
-
-- (MGCEventCellLayoutAttributes*)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath*)indexPath
-{
-	return (MGCEventCellLayoutAttributes*)[self layoutAttributesForItemAtIndexPath:indexPath];
+    NSArray *attribs = [[self layoutAttributesForSection:indexPath.section] objectForKey:DimmingViewsKey];
+    return [attribs objectAtIndex:indexPath.item];
 }
 
 - (void)prepareForCollectionViewUpdates:(NSArray*)updateItems
@@ -204,12 +262,38 @@
 	[super prepareForCollectionViewUpdates:updateItems];
 }
 
+- (void)invalidateLayoutWithContext:(MGCTimedEventsViewLayoutInvalidationContext *)context
+{
+    //NSLog(@"invalidateLayoutWithContext");
+    
+    [super invalidateLayoutWithContext:context];
+    
+    if (self.ignoreNextInvalidation) {
+        self.ignoreNextInvalidation = NO;
+        return;
+        
+    }
+    
+    if (context.invalidateEverything || context.invalidatedSections == nil) {
+        self.layoutInfo = nil;
+    }
+    else {
+        [context.invalidatedSections enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+            if (context.invalidateDimmingViews) {
+                [[self.layoutInfo objectForKey:@(idx)]removeObjectForKey:DimmingViewsKey];
+            }
+            if (context.invalidateEventCells) {
+                [[self.layoutInfo objectForKey:@(idx)]removeObjectForKey:EventCellsKey];
+            }
+        }];
+    }
+}
+
 - (void)invalidateLayout
 {
 	//NSLog(@"invalidateLayout");
-	
-	[super invalidateLayout];
-	self.layoutInfo = nil;
+    
+    [super invalidateLayout];
 }
 
 - (CGSize)collectionViewContentSize
@@ -235,9 +319,10 @@
     NSUInteger last =  MIN(MAX(first, ceilf(CGRectGetMaxX(rect) / self.dayColumnSize.width)), maxSection);
     
 	for (NSInteger day = first; day < last; day++) {
-		NSArray *attribs = [self layoutAttributesForSection:day];
-		
-		for (MGCEventCellLayoutAttributes *a in attribs) {
+		NSDictionary *layoutDic = [self layoutAttributesForSection:day];
+        NSArray *attribs = [[layoutDic objectForKey:DimmingViewsKey]arrayByAddingObjectsFromArray:[layoutDic objectForKey:EventCellsKey]];
+        
+		for (UICollectionViewLayoutAttributes *a in attribs) {
 			if (CGRectIntersectsRect(rect, a.frame)) {
 #ifdef BUG_FIX
 				CGRect frame = a.frame;
@@ -250,12 +335,6 @@
 	}
 
 	return allAttribs;
-}
-
-- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset
-{
-    CGFloat x = roundf(proposedContentOffset.x / self.dayColumnSize.width) * self.dayColumnSize.width;
-    return CGPointMake(x, proposedContentOffset.y);
 }
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
@@ -271,4 +350,12 @@
         oldBounds.size.width != newBounds.size.width;
 }
 
+// we keep this for iOS 8 compatibility. As of iOS 9, this is replaced by collectionView:targetContentOffsetForProposedContentOffset:
+- (CGPoint)targetContentOffsetForProposedContentOffset:(CGPoint)proposedContentOffset
+{
+    id<UICollectionViewDelegate> delegate = (id<UICollectionViewDelegate>)self.collectionView.delegate;
+    return [delegate collectionView:self.collectionView targetContentOffsetForProposedContentOffset:proposedContentOffset];
+}
+
 @end
+
