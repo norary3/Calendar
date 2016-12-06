@@ -35,10 +35,10 @@
 		72EF08181A3DB8C6005699CA /* YearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EF080E1A3DB8C6005699CA /* YearViewController.m */; };
 		96A3FD1C9E6707E46CB36A87 /* Pods_CalendarDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F06A59852B476A0AA324A957 /* Pods_CalendarDemo.framework */; };
 		B1BFBD5A1DF6ECCC0006FCDC /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFBD591DF6ECCC0006FCDC /* ActionViewController.swift */; };
-		B1BFBD5D1DF6ECCC0006FCDC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1BFBD5B1DF6ECCC0006FCDC /* MainInterface.storyboard */; };
 		B1BFBD611DF6ECCC0006FCDC /* AutoEventAddActionExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BFBD571DF6ECCC0006FCDC /* AutoEventAddActionExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BC32A4601D30FED600AB19D7 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32A45F1D30FED600AB19D7 /* DayViewController.m */; };
 		BC32A4681D3101BB00AB19D7 /* MGCCalendarHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC32A4671D3101BB00AB19D7 /* MGCCalendarHeaderCell.xib */; };
+		EE3BC5D71DF720EA0038AE8A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE3BC5D61DF720EA0038AE8A /* MainInterface.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,20 +129,20 @@
 		7290307D1A5031EF008C58D3 /* MGCTimeRowsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCTimeRowsView.m; sourceTree = "<group>"; };
 		72AE50281A641419004DAF44 /* MGCInteractiveEventView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGCInteractiveEventView.h; sourceTree = "<group>"; };
 		72AE50291A641419004DAF44 /* MGCInteractiveEventView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCInteractiveEventView.m; sourceTree = "<group>"; };
-		72B5D8EE180D73E0004ADB86 /* CalendarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalendarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72B5D8EE180D73E0004ADB86 /* DewDateCalendarDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DewDateCalendarDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B5D8F1180D73E0004ADB86 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		72B5D8F3180D73E0004ADB86 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		72B5D8F5180D73E0004ADB86 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		72B5D8F9180D73E0004ADB86 /* Calendar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Calendar-Info.plist"; sourceTree = "<group>"; };
+		72B5D8F9180D73E0004ADB86 /* DewDateCalendar-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DewDateCalendar-Info.plist"; sourceTree = "<group>"; };
 		72B5D8FB180D73E0004ADB86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		72B5D8FD180D73E0004ADB86 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		72B5D8FF180D73E0004ADB86 /* Calendar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Calendar-Prefix.pch"; sourceTree = "<group>"; };
+		72B5D8FF180D73E0004ADB86 /* DewDateCalendar-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DewDateCalendar-Prefix.pch"; sourceTree = "<group>"; };
 		72B5D900180D73E0004ADB86 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		72B5D901180D73E0004ADB86 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		72B5D903180D73E0004ADB86 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		72B5D909180D73E0004ADB86 /* CalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		72B5D909180D73E0004ADB86 /* DewDateCalendarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DewDateCalendarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		72B5D90A180D73E0004ADB86 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		72B5D912180D73E0004ADB86 /* CalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CalendarTests-Info.plist"; sourceTree = "<group>"; };
+		72B5D912180D73E0004ADB86 /* DewDateCalendarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DewDateCalendarTests-Info.plist"; sourceTree = "<group>"; };
 		72B5D914180D73E0004ADB86 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		72B5D916180D73E0004ADB86 /* CalendarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalendarTests.m; sourceTree = "<group>"; };
 		72B5D920180D73F3004ADB86 /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
@@ -183,7 +183,6 @@
 		72EF080E1A3DB8C6005699CA /* YearViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YearViewController.m; sourceTree = "<group>"; };
 		B1BFBD571DF6ECCC0006FCDC /* AutoEventAddActionExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AutoEventAddActionExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BFBD591DF6ECCC0006FCDC /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
-		B1BFBD5C1DF6ECCC0006FCDC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		B1BFBD5E1DF6ECCC0006FCDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC32A45E1D30FED500AB19D7 /* DayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DayViewController.h; sourceTree = "<group>"; };
 		BC32A45F1D30FED600AB19D7 /* DayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DayViewController.m; sourceTree = "<group>"; };
@@ -193,6 +192,7 @@
 		BC32A4651D3100D600AB19D7 /* MGCCalendarHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGCCalendarHeaderCell.m; sourceTree = "<group>"; };
 		BC32A4671D3101BB00AB19D7 /* MGCCalendarHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MGCCalendarHeaderCell.xib; sourceTree = "<group>"; };
 		EA537021B8BB04EA0A609FA9 /* Pods-CalendarDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalendarDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalendarDemo/Pods-CalendarDemo.release.xcconfig"; sourceTree = "<group>"; };
+		EE3BC5D61DF720EA0038AE8A /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		F06A59852B476A0AA324A957 /* Pods_CalendarDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalendarDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -359,8 +359,8 @@
 		72B5D8EF180D73E0004ADB86 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				72B5D8EE180D73E0004ADB86 /* CalendarDemo.app */,
-				72B5D909180D73E0004ADB86 /* CalendarTests.xctest */,
+				72B5D8EE180D73E0004ADB86 /* DewDateCalendarDemo.app */,
+				72B5D909180D73E0004ADB86 /* DewDateCalendarTests.xctest */,
 				B1BFBD571DF6ECCC0006FCDC /* AutoEventAddActionExt.appex */,
 			);
 			name = Products;
@@ -415,10 +415,10 @@
 			isa = PBXGroup;
 			children = (
 				720041B91879B2B600F3C497 /* Settings.bundle */,
-				72B5D8F9180D73E0004ADB86 /* Calendar-Info.plist */,
+				72B5D8F9180D73E0004ADB86 /* DewDateCalendar-Info.plist */,
 				72B5D8FA180D73E0004ADB86 /* InfoPlist.strings */,
 				72B5D8FD180D73E0004ADB86 /* main.m */,
-				72B5D8FF180D73E0004ADB86 /* Calendar-Prefix.pch */,
+				72B5D8FF180D73E0004ADB86 /* DewDateCalendar-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -436,7 +436,7 @@
 		72B5D911180D73E0004ADB86 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				72B5D912180D73E0004ADB86 /* CalendarTests-Info.plist */,
+				72B5D912180D73E0004ADB86 /* DewDateCalendarTests-Info.plist */,
 				72B5D913180D73E0004ADB86 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -486,7 +486,7 @@
 			isa = PBXGroup;
 			children = (
 				B1BFBD591DF6ECCC0006FCDC /* ActionViewController.swift */,
-				B1BFBD5B1DF6ECCC0006FCDC /* MainInterface.storyboard */,
+				EE3BC5D61DF720EA0038AE8A /* MainInterface.storyboard */,
 				B1BFBD5E1DF6ECCC0006FCDC /* Info.plist */,
 			);
 			path = AutoEventAddActionExt;
@@ -504,9 +504,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		72B5D8ED180D73E0004ADB86 /* CalendarDemo */ = {
+		72B5D8ED180D73E0004ADB86 /* DewDateCalendarDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 72B5D91A180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "CalendarDemo" */;
+			buildConfigurationList = 72B5D91A180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "DewDateCalendarDemo" */;
 			buildPhases = (
 				D502B293157A24324B0C1F8D /* [CP] Check Pods Manifest.lock */,
 				72B5D8EA180D73E0004ADB86 /* Sources */,
@@ -521,14 +521,14 @@
 			dependencies = (
 				B1BFBD601DF6ECCC0006FCDC /* PBXTargetDependency */,
 			);
-			name = CalendarDemo;
+			name = DewDateCalendarDemo;
 			productName = Calendar;
-			productReference = 72B5D8EE180D73E0004ADB86 /* CalendarDemo.app */;
+			productReference = 72B5D8EE180D73E0004ADB86 /* DewDateCalendarDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		72B5D908180D73E0004ADB86 /* CalendarTests */ = {
+		72B5D908180D73E0004ADB86 /* DewDateCalendarTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 72B5D91D180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "CalendarTests" */;
+			buildConfigurationList = 72B5D91D180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "DewDateCalendarTests" */;
 			buildPhases = (
 				72B5D905180D73E0004ADB86 /* Sources */,
 				72B5D906180D73E0004ADB86 /* Frameworks */,
@@ -539,9 +539,9 @@
 			dependencies = (
 				72B5D90F180D73E0004ADB86 /* PBXTargetDependency */,
 			);
-			name = CalendarTests;
+			name = DewDateCalendarTests;
 			productName = CalendarTests;
-			productReference = 72B5D909180D73E0004ADB86 /* CalendarTests.xctest */;
+			productReference = 72B5D909180D73E0004ADB86 /* DewDateCalendarTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		B1BFBD561DF6ECCC0006FCDC /* AutoEventAddActionExt */ = {
@@ -569,7 +569,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
-				ORGANIZATIONNAME = "Julien Martin";
+				ORGANIZATIONNAME = HiddenTrack;
 				TargetAttributes = {
 					72B5D8ED180D73E0004ADB86 = {
 						DevelopmentTeam = RSMX8QUE69;
@@ -580,7 +580,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 72B5D8E9180D73E0004ADB86 /* Build configuration list for PBXProject "Calendar" */;
+			buildConfigurationList = 72B5D8E9180D73E0004ADB86 /* Build configuration list for PBXProject "DewDateCalendar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -594,8 +594,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				72B5D8ED180D73E0004ADB86 /* CalendarDemo */,
-				72B5D908180D73E0004ADB86 /* CalendarTests */,
+				72B5D8ED180D73E0004ADB86 /* DewDateCalendarDemo */,
+				72B5D908180D73E0004ADB86 /* DewDateCalendarTests */,
 				B1BFBD561DF6ECCC0006FCDC /* AutoEventAddActionExt */,
 			);
 		};
@@ -630,7 +630,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1BFBD5D1DF6ECCC0006FCDC /* MainInterface.storyboard in Resources */,
+				EE3BC5D71DF720EA0038AE8A /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,7 +722,7 @@
 /* Begin PBXTargetDependency section */
 		72B5D90F180D73E0004ADB86 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 72B5D8ED180D73E0004ADB86 /* CalendarDemo */;
+			target = 72B5D8ED180D73E0004ADB86 /* DewDateCalendarDemo */;
 			targetProxy = 72B5D90E180D73E0004ADB86 /* PBXContainerItemProxy */;
 		};
 		B1BFBD601DF6ECCC0006FCDC /* PBXTargetDependency */ = {
@@ -758,14 +758,6 @@
 				726C2038182D6F66004AEE13 /* fr */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B1BFBD5B1DF6ECCC0006FCDC /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B1BFBD5C1DF6ECCC0006FCDC /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -860,8 +852,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CalendarDemo/Calendar-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/CalendarDemo/Calendar-Info.plist";
+				GCC_PREFIX_HEADER = "CalendarDemo/DewDateCalendar-Prefix.pch";
+				INFOPLIST_FILE = "CalendarDemo/DewDateCalendar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.hiddenTrack.DewDateCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -881,8 +873,8 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CalendarDemo/Calendar-Prefix.pch";
-				INFOPLIST_FILE = "$(SRCROOT)/CalendarDemo/Calendar-Info.plist";
+				GCC_PREFIX_HEADER = "CalendarDemo/DewDateCalendar-Prefix.pch";
+				INFOPLIST_FILE = "CalendarDemo/DewDateCalendar-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = co.hiddenTrack.DewDateCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -906,7 +898,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "CalendarTests/CalendarTests-Info.plist";
+				INFOPLIST_FILE = "CalendarTests/DewDateCalendarTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jmartin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -923,7 +915,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalendarDemo/Calendar-Prefix.pch";
-				INFOPLIST_FILE = "CalendarTests/CalendarTests-Info.plist";
+				INFOPLIST_FILE = "CalendarTests/DewDateCalendarTests-Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jmartin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = xctest;
@@ -986,7 +978,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		72B5D8E9180D73E0004ADB86 /* Build configuration list for PBXProject "Calendar" */ = {
+		72B5D8E9180D73E0004ADB86 /* Build configuration list for PBXProject "DewDateCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				72B5D918180D73E0004ADB86 /* Debug */,
@@ -995,7 +987,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		72B5D91A180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "CalendarDemo" */ = {
+		72B5D91A180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "DewDateCalendarDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				72B5D91B180D73E0004ADB86 /* Debug */,
@@ -1004,7 +996,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		72B5D91D180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "CalendarTests" */ = {
+		72B5D91D180D73E0004ADB86 /* Build configuration list for PBXNativeTarget "DewDateCalendarTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				72B5D91E180D73E0004ADB86 /* Debug */,
@@ -1020,6 +1012,7 @@
 				B1BFBD641DF6ECCC0006FCDC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
