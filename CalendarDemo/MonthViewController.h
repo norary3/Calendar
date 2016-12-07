@@ -8,9 +8,18 @@
 #import "MGCMonthPlannerEKViewController.h"
 #import "MainViewController.h"
 
+@class MonthViewController;
+
+@protocol MonthViewControllerDelegate<MGCMonthPlannerViewDelegate, CalendarViewControllerDelegate, UIViewControllerTransitioningDelegate>
+
+@optional
+- (void) monthViewController:(MonthViewController*)controller didSelectDayCellAtDate:(NSDate*)date;
+
+@end
+
 
 @interface MonthViewController : MGCMonthPlannerEKViewController <CalendarViewControllerNavigation>
 
-@property (nonatomic, weak) id<CalendarViewControllerDelegate> delegate;
+@property (nonatomic, weak) id<MonthViewControllerDelegate> delegate;
 
 @end

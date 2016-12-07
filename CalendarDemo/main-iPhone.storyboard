@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,12 +21,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UIQ-Ir-tpF">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UIQ-Ir-tpF">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                                 <color key="backgroundColor" red="0.94793570041656494" green="0.94793570041656494" blue="0.94793570041656494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </containerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUn-JT-Rec">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xUn-JT-Rec">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
                                     <barButtonItem title="Today" id="L51-DF-0tA">
                                         <connections>
@@ -65,7 +64,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="2016" id="SQ8-0g-wKM"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" id="6hS-eO-sTa">
-                            <rect key="frame" x="53" y="7" width="189" height="30"/>
+                            <rect key="frame" x="53" y="7" width="215" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Week"/>
@@ -77,18 +76,6 @@
                                 <action selector="switchControllers:" destination="2hR-lJ-uEz" eventType="valueChanged" id="4Tb-tc-Ttf"/>
                             </connections>
                         </segmentedControl>
-                        <rightBarButtonItems>
-                            <barButtonItem title="&gt;&gt;" id="PXg-Kw-8sZ">
-                                <connections>
-                                    <action selector="nextPage:" destination="2hR-lJ-uEz" id="6X8-LZ-mEo"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="&lt;&lt;" id="wYF-fk-wuf">
-                                <connections>
-                                    <action selector="previousPage:" destination="2hR-lJ-uEz" id="Pw9-fc-kPo"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="containerView" destination="UIQ-Ir-tpF" id="fwo-It-Omh"/>

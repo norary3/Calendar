@@ -33,6 +33,19 @@
 	}
 }
 
+
+//overide method in MGCMonthPlannerEKViewController.m
+ - (void)monthPlannerView:(MGCMonthPlannerView*)view didSelectDayCellAtDate:(NSDate *)date
+ {
+     //[super monthPlannerView:view didSelectDayCellAtDate:date]; // it calls monthPlannerView: didSelectDayCellAtDate: in MGCMonthPlannerEKViewController.m
+     
+     // check if can run method in this context.
+     if ([self.delegate respondsToSelector:@selector(monthViewController:didSelectDayCellAtDate:)]) {
+         // call monthViewController:didSelectDayCellAtDate: in MainViewController.m
+         [self.delegate monthViewController:self didSelectDayCellAtDate:date];
+     }
+ }
+
 - (NSAttributedString*)monthPlannerView:(MGCMonthPlannerView *)view attributedStringForDayHeaderAtDate:(NSDate *)date
 {
     //return nil;

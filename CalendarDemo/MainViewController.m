@@ -24,7 +24,8 @@ typedef enum : NSUInteger
 } CalendarViewType;
 
 
-@interface MainViewController ()<YearViewControllerDelegate, WeekViewControllerDelegate, DayViewControllerDelegate>
+@interface MainViewController ()<YearViewControllerDelegate, MonthViewControllerDelegate,WeekViewControllerDelegate, DayViewControllerDelegate>
+//@interface MainViewController ()<YearViewControllerDelegate, WeekViewControllerDelegate, DayViewControllerDelegate>
 
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 @property (nonatomic) EKCalendarChooser *calendarChooser;
@@ -294,6 +295,15 @@ typedef enum : NSUInteger
     CalendarViewController *controllerNew = [self controllerForViewType:CalendarViewMonthType];
     [self moveToNewController:controllerNew atDate:date];
     self.viewChooser.selectedSegmentIndex = CalendarViewMonthType;
+}
+
+#pragma mark - MonthViewControllerDelegate
+
+- (void)monthViewController:(MonthViewController*)controller didSelectDayCellAtDate:(NSDate*)date
+{
+    CalendarViewController *controllerNew = [self controllerForViewType:CalendarViewWeekType];
+    [self moveToNewController:controllerNew atDate:date];
+    self.viewChooser.selectedSegmentIndex = CalendarViewWeekType;
 }
 
 #pragma mark - CalendarViewControllerDelegate

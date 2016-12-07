@@ -8,7 +8,7 @@
 //=========================================================================================
 
 
-#define APP_NAME  @"CalendarDemo"
+#define APP_NAME  @"DewDateCalendarDemo"
 
 #define IS_IPHONE_4S        [[UIScreen mainScreen] bounds].size.height == 480
 #define IS_IPHONE_5         [[UIScreen mainScreen] bounds].size.height == 568
