@@ -1397,6 +1397,28 @@ typedef enum
     }
     
     cell.dayLabel.attributedText = attrStr;
+    
+    
+    NSAttributedString *attrStrSub = nil;
+    if ([self.delegate respondsToSelector:@selector(monthPlannerView:attributedStringForDayHeaderAtDate:)]) {
+        attrStrSub = [self.delegate monthPlannerView:self attributedStringForDayHeaderAtDate:date];
+    }
+    
+    if (!attrStrSub) {
+        // not called if upper if statement was fired.
+        //NSLog(@"Loaded LabelSub");
+        NSString *strSub = [self.dateFormatter stringFromDate:date];
+        
+        NSMutableParagraphStyle *para = [NSMutableParagraphStyle new];
+        para.alignment = NSTextAlignmentLeft;//NSTextAlignmentCenter;
+        
+        UIColor *textColor = [self.calendar mgc_isDate:date sameDayAsDate:[NSDate date]] ? [UIColor redColor] : [UIColor blackColor];
+        
+        attrStr = [[NSAttributedString alloc]initWithString:strSub attributes:@{ NSParagraphStyleAttributeName: para, NSForegroundColorAttributeName: textColor }];
+    }
+    
+    cell.dayLabel.attributedText = attrStrSub;
+    
     cell.backgroundColor = [self.calendar isDateInWeekend:date] ? self.weekendDayBackgroundColor : self.weekDayBackgroundColor;
     
     if (self.style & MGCMonthPlannerStyleDots) {
