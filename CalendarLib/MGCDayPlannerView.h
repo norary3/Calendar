@@ -613,6 +613,13 @@ typedef NS_ENUM(NSUInteger, MGCDayPlannerTimeMark) {
 - (void)dayPlannerView:(MGCDayPlannerView*)view didEndScrolling:(MGCDayPlannerScrollType)scrollType;
 
 /*!
+	@abstract	Tells the delegate that a day cell was selected.
+	@param		view		The day planner view object notifying about the selection change.
+	@param		date		The date for the corresponding cell.
+ */
+- (void)dayPlannerView:(MGCDayPlannerView*)view didSelectDayCellAtDate:(NSDate*)date;
+
+/*!
 	@abstract	Tells the delegate that the specified day is about to be displayed in the day planner view.
 	@param		view		The day planner view object notifying about the display change.
 	@param		date		The day about to be displayed.

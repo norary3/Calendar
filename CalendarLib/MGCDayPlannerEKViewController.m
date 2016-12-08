@@ -455,6 +455,11 @@ static NSString* const EventCellReuseIdentifier = @"EventCellReuseIdentifier";
     [self showEditControllerForEventOfType:type atIndex:index date:date];
 }
 
+- (void)dayPlannerView:(MGCDayPlannerView*)view didSelectDayCellAtDate:(NSDate *)date
+{
+    NSLog(@"selected day at : %@", date);
+}
+
 - (void)dayPlannerView:(MGCDayPlannerView*)view willDisplayDate:(NSDate*)date
 {
     //NSLog(@"will display %@", date);

@@ -177,7 +177,7 @@ static const CGFloat kMaxHourSlotHeight = 150.;
 	_numberOfVisibleDays = 7;
 	_hourSlotHeight = 65.;
 	_hourRange = NSMakeRange(0, 24);
-	_timeColumnWidth = 60.;
+	_timeColumnWidth = 50.;
 	_dayHeaderHeight = 40.;
     _daySeparatorsColor = [UIColor lightGrayColor];
     _timeSeparatorsColor = [UIColor lightGrayColor];
@@ -920,7 +920,17 @@ static const CGFloat kMaxHourSlotHeight = 150.;
 	}
 	return _dayColumnsView;
 }
-
+#pragma mark - UICollectionViewDelegate
+//LOOK
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"is there?");
+    MGCDayColumnCell *cell = (MGCDayColumnCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    if ([self.delegate respondsToSelector:@selector(dayPlannerView:didSelectDayCellAtDate:)]) {
+        NSDate *date = cell.date;
+        [self.delegate dayPlannerView:self didSelectDayCellAtDate:date];
+    }
+}
 - (UIScrollView*)timeScrollView
 {
 	if (!_timeScrollView) {
@@ -1802,6 +1812,7 @@ static const CGFloat kMaxHourSlotHeight = 150.;
 	return 1; // for dayColumnView
 }
 
+//dayCell : header for WeekView
 - (UICollectionViewCell*)dayColumnCellAtIndexPath:(NSIndexPath*)indexPath
 {
     MGCDayColumnCell *dayCell = [self.dayColumnsView dequeueReusableCellWithReuseIdentifier:DayColumnCellReuseIdentifier forIndexPath:indexPath];
@@ -1859,9 +1870,9 @@ static const CGFloat kMaxHourSlotHeight = 150.;
     }
     
     dayCell.accessoryTypes = accessoryTypes;
+    dayCell.date = date;
     return dayCell;
 }
-
 - (UICollectionViewCell*)dequeueCellForEventOfType:(MGCEventType)type atIndexPath:(NSIndexPath*)indexPath
 {
 	NSDate *date = [self dateFromDayOffset:indexPath.section];
@@ -1894,6 +1905,7 @@ static const CGFloat kMaxHourSlotHeight = 150.;
 	}
 	else if (collectionView == self.dayColumnsView) {
 		return [self dayColumnCellAtIndexPath:indexPath];
+        NSLog(@"???");
 	}
 	return nil;
 }

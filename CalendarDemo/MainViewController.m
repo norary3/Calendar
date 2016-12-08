@@ -204,6 +204,8 @@ typedef enum : NSUInteger
 
 -(void)moveToNewController:(CalendarViewController*)newController atDate:(NSDate*)date
 {
+    self.settingsButtonItem.enabled = NO;
+
     [self.calendarViewController willMoveToParentViewController:nil];
     [self addChildViewController:newController];
     
@@ -218,6 +220,10 @@ typedef enum : NSUInteger
          self.calendarViewController = newController;
          [newController moveToDate:date animated:NO];
          newController.view.hidden = NO;
+         
+         if ([self.calendarViewController isKindOfClass:WeekViewController.class] || [self.calendarViewController isKindOfClass:MonthViewController.class]) {
+             self.settingsButtonItem.enabled = YES;
+         }
      }];
 }
 
@@ -225,16 +231,9 @@ typedef enum : NSUInteger
 
 -(IBAction)switchControllers:(UISegmentedControl*)sender
 {
-    self.settingsButtonItem.enabled = NO;
-    
     NSDate *date = [self.calendarViewController centerDate];
     CalendarViewController *controller = [self controllerForViewType:sender.selectedSegmentIndex];
     [self moveToNewController:controller atDate:date];
-    
-    
-    if ([controller isKindOfClass:WeekViewController.class] || [controller isKindOfClass:MonthViewController.class]) {
-        self.settingsButtonItem.enabled = YES;
-    }
 }
 
 - (IBAction)showToday:(id)sender
@@ -316,6 +315,16 @@ typedef enum : NSUInteger
     CalendarViewController *controllerNew = [self controllerForViewType:CalendarViewWeekType];
     [self moveToNewController:controllerNew atDate:date];
     self.viewChooser.selectedSegmentIndex = CalendarViewWeekType;
+}
+
+#pragma mark - WeekViewControllerDelegate
+
+- (void)dayViewController:(WeekViewController*)controller didSelectDayCellAtDate:(NSDate*)date
+{
+    NSLog(@"select date in main");
+    CalendarViewController *controllerNew = [self controllerForViewType:CalendarViewDayType];
+    [self moveToNewController:controllerNew atDate:date];
+    self.viewChooser.selectedSegmentIndex = CalendarViewDayType;
 }
 
 #pragma mark - CalendarViewControllerDelegate

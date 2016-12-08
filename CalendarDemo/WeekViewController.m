@@ -10,7 +10,6 @@
 #import "NSCalendar+MGCAdditions.h"
 #import "NSAttributedString+MGCAdditions.h"
 #import "Constant.h"
-//#import "MGCCalendarHeaderView.h"
 
 @implementation WeekViewController
 
@@ -30,11 +29,13 @@
         //NSLog(@"---------------- iPAD ------------------");
         self.dayPlannerView.dateFormat = @"eee\nd MMM";
         self.dayPlannerView.dayHeaderHeight = 50;
+        [self.dayPlannerView setHourSlotHeight:30];
     }
     else{
         //NSLog(@"---------------- iPhone ------------------");
         self.dayPlannerView.dateFormat = @"eee\nd \nMMM";
         self.dayPlannerView.dayHeaderHeight = 60;
+        [self.dayPlannerView setHourSlotHeight:40];
     }
 }
 
@@ -51,6 +52,18 @@
     NSDate *date = [view dateAtPoint:view.center rounded:YES];
     if (date && [self.delegate respondsToSelector:@selector(calendarViewController:didShowDate:)]) {
         [self.delegate calendarViewController:self didShowDate:date];
+    }
+}
+
+//overide method in MGCMonthPlannerEKViewController.m
+- (void)dayPlannerView:(MGCDayPlannerView*)view didSelectDayCellAtDate:(NSDate *)date
+{
+    NSLog(@"out if");
+    // check if can run method in this context.
+    if ([self.delegate respondsToSelector:@selector(dayPlannerView:didSelectDayCellAtDate:)]) {
+        NSLog(@"in if");
+        // call monthViewController:didSelectDayCellAtDate: in MainViewController.m
+        [self.delegate dayPlannerView:self didSelectDayCellAtDate:date];
     }
 }
 

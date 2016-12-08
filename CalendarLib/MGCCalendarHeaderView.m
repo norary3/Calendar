@@ -186,7 +186,7 @@ static CGFloat kItemHeight = 60;
 }
 
 #pragma mark - UICollectionViewDataSource
-
+// For day view
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     MGCCalendarHeaderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];

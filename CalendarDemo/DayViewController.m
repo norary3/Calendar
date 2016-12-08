@@ -30,11 +30,13 @@
         //NSLog(@"---------------- iPAD ------------------");
         self.dayPlannerView.dateFormat = @"eee\nd MMM";
         self.dayPlannerView.dayHeaderHeight = 50;
+        [self.dayPlannerView setHourSlotHeight:30];
     }
     else{
         //NSLog(@"---------------- iPhone ------------------");
         self.dayPlannerView.dateFormat = @"eee\nd \nMMM";
         self.dayPlannerView.dayHeaderHeight = 60;
+        [self.dayPlannerView setHourSlotHeight:40];
     }
 }
 

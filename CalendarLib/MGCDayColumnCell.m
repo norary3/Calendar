@@ -27,7 +27,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //  SOFTWARE.
 //
-
+//  header for Week
 #import "MGCDayColumnCell.h"
 
 
@@ -74,6 +74,9 @@ static const CGFloat dotSize = 4;
     return self;
 }
 
+- (void)setDate:(NSDate *)date{
+    _date = date;
+}
 - (void)setActivityIndicatorVisible:(BOOL)visible
 {
     if (!visible) {
@@ -102,6 +105,10 @@ static const CGFloat dotSize = 4;
 - (void)layoutSubviews
 {
 	[super layoutSubviews];
+    
+    if (self.isSelected) {
+        self.dayLabel.textColor = [UIColor redColor];
+    }
 	
 	static CGFloat kSpace = 2;
 

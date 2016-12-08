@@ -8,8 +8,12 @@
 #import "MGCDayPlannerEKViewController.h"
 #import "MainViewController.h"
 
+@class WeekViewController;
 
-@protocol WeekViewControllerDelegate <MGCDayPlannerEKViewControllerDelegate, CalendarViewControllerDelegate, UIViewControllerTransitioningDelegate>
+@protocol WeekViewControllerDelegate <MGCDayPlannerViewDelegate, MGCDayPlannerEKViewControllerDelegate, CalendarViewControllerDelegate, UIViewControllerTransitioningDelegate>
+
+@optional
+- (void) dayPlannerView:(WeekViewController*)controller didSelectDayCellAtDate:(NSDate*)date;
 
 @end
 
