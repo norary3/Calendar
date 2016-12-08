@@ -483,6 +483,14 @@ typedef NS_ENUM(NSUInteger, MGCMonthPlannerScrollAlignment) {
 - (NSAttributedString*)monthPlannerView:(MGCMonthPlannerView*)view attributedStringForDayHeaderAtDate:(NSDate*)date;
 
 /*!
+	@abstract   Asks the delegate for the attributed string of the lunar date for given date.
+    @param		view		The month planner view requesting the information.
+	@param		date		The date for the header.
+	@return     The attributed string to draw.
+ */
+- (NSAttributedString*)monthPlannerView:(MGCMonthPlannerView*)view attributedStringForLunarDateAtDate:(NSDate*)date;
+
+/*!
 	@abstract	Tells the delegate that the month planner view was scrolled.
  */
 - (void)monthPlannerViewDidScroll:(MGCMonthPlannerView*)view;

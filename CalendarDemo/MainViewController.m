@@ -74,6 +74,16 @@ typedef enum : NSUInteger
     else{
         //NSLog(@"---------------- iPhone ------------------");
         self.navigationItem.leftBarButtonItem.customView = self.currentDateLabel;
+        /*
+        UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.calendarChooser];
+        self.calendarChooser.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(calendarChooserStartEdit)];
+        nc.modalPresentationStyle = UIModalPresentationPopover;
+        
+        [self showDetailViewController:nc sender:self];
+        
+        UIPopoverPresentationController *popController = nc.popoverPresentationController;
+        popController.barButtonItem = (UIBarButtonItem*)sender;
+        */
     }
 	
 	CalendarViewController *controller = [self controllerForViewType:CalendarViewWeekType];
@@ -313,7 +323,7 @@ typedef enum : NSUInteger
     if (controller.class == YearViewController.class)
         [self.dateFormatter setDateFormat:@"yyyy"];
     else
-        [self.dateFormatter setDateFormat:@"MMMM yyyy"];
+        [self.dateFormatter setDateFormat:@"MMMM"];
     
     NSString *str = [self.dateFormatter stringFromDate:date];
     self.currentDateLabel.text = str;

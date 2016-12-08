@@ -48,8 +48,6 @@
 
 - (NSAttributedString*)monthPlannerView:(MGCMonthPlannerView *)view attributedStringForDayHeaderAtDate:(NSDate *)date
 {
-    //return nil;
-    
     static NSDateFormatter *dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [NSDateFormatter new];
@@ -59,12 +57,12 @@
     NSString *dayStr = [dateFormatter stringFromDate:date];
     
     NSString *str = dayStr;
-    
+    /*  // it makes the first date of the month like Jan 1
     if (dayStr.integerValue == 1) {
         dateFormatter.dateFormat = @"MMM d";
         str = [dateFormatter stringFromDate:date];
     }
-    
+    */
     UIFont *font = [UIFont systemFontOfSize:isiPad ? 15 : 12];
     NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:str attributes:@{ NSFontAttributeName: font }];
     
@@ -86,6 +84,47 @@
     [attrStr addAttributes:@{ NSParagraphStyleAttributeName: para } range:NSMakeRange(0, attrStr.length)];
 
     return attrStr;
+}
+
+- (NSAttributedString*)monthPlannerView:(MGCMonthPlannerView *)view attributedStringForLunarDateAtDate:(NSDate *)date
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter == nil) {
+        dateFormatter = [NSDateFormatter new];
+    }
+    
+    dateFormatter.dateFormat = @"d";
+
+    NSDateComponents *comps = [self.calendar components:NSCalendarUnitWeekday fromDate:date];
+    
+    int weekday = (int) [comps weekday];
+    
+    // if it is Sunday
+    if ( weekday % 7 == 1 ) {
+        NSCalendar *lunarCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+        
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setCalendar:lunarCalendar];
+        
+        dateFormatter.dateFormat = @"M.d";
+        
+        NSString *dayStr = [dateFormatter stringFromDate:date];
+        
+        NSString *str = dayStr;
+        
+        UIFont *font = [UIFont systemFontOfSize:isiPad ? 8 : 6];
+        NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc]initWithString:str attributes:@{ NSFontAttributeName: font }];
+        
+        NSMutableParagraphStyle *para = [NSMutableParagraphStyle new];
+        para.alignment = NSTextAlignmentLeft;
+        para.headIndent = 6;
+        
+        [attrStr addAttributes:@{ NSParagraphStyleAttributeName: para } range:NSMakeRange(0, attrStr.length)];
+        
+        return attrStr;
+
+    }
+        return nil;
 }
 
 #pragma mark - CalendarViewControllerNavigation
