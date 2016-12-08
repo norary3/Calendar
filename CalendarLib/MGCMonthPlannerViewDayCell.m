@@ -56,6 +56,13 @@ static const CGFloat kDotSize = 8;
         
         [self.contentView addSubview:self.dayLabel];
         
+        self.dayLabelSub = [[UILabel alloc]initWithFrame:CGRectZero];
+        self.dayLabelSub.font = [UIFont systemFontOfSize:[UIFont smallSystemFontSize]];
+        self.dayLabelSub.numberOfLines = 1;
+        self.dayLabelSub.adjustsFontSizeToFitWidth = YES;
+        
+        [self.contentView addSubview:self.dayLabelSub];
+        
         self.dotLayer = [CAShapeLayer layer];
         self.dotLayer.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, kDotSize, kDotSize)].CGPath;;
         self.dotLayer.fillColor = [UIColor redColor].CGColor;

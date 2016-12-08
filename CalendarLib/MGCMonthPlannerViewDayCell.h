@@ -35,6 +35,7 @@
 
 @property (nonatomic) CGFloat headerHeight;
 @property (nonatomic) UILabel *dayLabel;
+@property (nonatomic) UILabel *dayLabelSub;
 @property (nonatomic) BOOL showsDot;
 @property (nonatomic) UIColor *dotColor;
 
