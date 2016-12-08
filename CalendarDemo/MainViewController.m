@@ -17,10 +17,10 @@
 
 typedef enum : NSUInteger
 {
-    CalendarViewWeekType  = 0,
-    CalendarViewMonthType = 1,
-    CalendarViewYearType = 2,
-    CalendarViewDayType
+    CalendarViewYearType = 1,
+    CalendarViewDayType = 0,
+    CalendarViewWeekType = 2,
+    CalendarViewMonthType
 } CalendarViewType;
 
 
@@ -86,7 +86,7 @@ typedef enum : NSUInteger
         */
     }
 	
-	CalendarViewController *controller = [self controllerForViewType:CalendarViewWeekType];
+	CalendarViewController *controller = [self controllerForViewType:CalendarViewDayType];
 	[self addChildViewController:controller];
 	[self.containerView addSubview:controller.view];
 	controller.view.frame = self.containerView.bounds;
@@ -163,6 +163,8 @@ typedef enum : NSUInteger
     if (_weekViewController == nil) {
         _weekViewController = [[WeekViewController alloc]initWithEventStore:self.eventStore];
         _weekViewController.calendar = self.calendar;
+        //LOOK AT IT
+        _weekViewController.showsWeekHeaderView = NO;
         _weekViewController.delegate = self;
     }
     return _weekViewController;
@@ -360,5 +362,7 @@ typedef enum : NSUInteger
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(IBAction)toMainViewController:(UIStoryboardSegue *)segue {
+}
 
 @end

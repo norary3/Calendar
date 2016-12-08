@@ -66,7 +66,7 @@
     static NSDateFormatter *dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"eee d";
+        dateFormatter.dateFormat = @"eee\n d";
     }
     
     NSString *dayStr = [dateFormatter stringFromDate:date];

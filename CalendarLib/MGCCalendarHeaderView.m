@@ -220,6 +220,7 @@ static CGFloat kItemHeight = 60;
 
 //when the user interacts with the header part move the bottom part
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"is here?");
     MGCCalendarHeaderCell *cell = (MGCCalendarHeaderCell *)[collectionView cellForItemAtIndexPath:indexPath];
     [self selectDate:cell.date];
 }

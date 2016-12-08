@@ -10,7 +10,7 @@
 #import "NSCalendar+MGCAdditions.h"
 #import "NSAttributedString+MGCAdditions.h"
 #import "Constant.h"
-
+//#import "MGCCalendarHeaderView.h"
 
 @implementation WeekViewController
 
@@ -91,7 +91,7 @@
     static NSDateFormatter *dateFormatter = nil;
     if (dateFormatter == nil) {
         dateFormatter = [NSDateFormatter new];
-        dateFormatter.dateFormat = @"eee d";
+        dateFormatter.dateFormat = @"eee\n d";
     }
     
     NSString *dayStr = [dateFormatter stringFromDate:date];
@@ -103,7 +103,7 @@
         UIFont *boldFont = [UIFont boldSystemFontOfSize:15];
         
         MGCCircleMark *mark = [MGCCircleMark new];
-        mark.yOffset = boldFont.descender - mark.margin;
+        mark.yOffset = boldFont.descender - mark.margin; //
  
         NSUInteger dayStringStart = [dayStr rangeOfString:@" "].location + 1;
         [attrStr addAttributes:@{ NSFontAttributeName: boldFont, NSForegroundColorAttributeName: [UIColor whiteColor], MGCCircleMarkAttributeName: mark } range:NSMakeRange(dayStringStart, dayStr.length - dayStringStart)];
