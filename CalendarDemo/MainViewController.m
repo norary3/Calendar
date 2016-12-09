@@ -73,7 +73,7 @@ typedef enum : NSUInteger
     }
     else{
         //NSLog(@"---------------- iPhone ------------------");
-        self.navigationItem.leftBarButtonItem.customView = self.currentDateLabel;
+        self.navigationItem.leftBarButtonItem = self.currentDateLabel;
         /*
         UINavigationController *nc = [[UINavigationController alloc]initWithRootViewController:self.calendarChooser];
         self.calendarChooser.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(calendarChooserStartEdit)];
@@ -312,9 +312,9 @@ typedef enum : NSUInteger
 
 - (void)monthViewController:(MonthViewController*)controller didSelectDayCellAtDate:(NSDate*)date
 {
-    CalendarViewController *controllerNew = [self controllerForViewType:CalendarViewWeekType];
+    CalendarViewController *controllerNew = [self controllerForViewType:CalendarViewDayType];
     [self moveToNewController:controllerNew atDate:date];
-    self.viewChooser.selectedSegmentIndex = CalendarViewWeekType;
+    self.viewChooser.selectedSegmentIndex = CalendarViewDayType;
 }
 
 #pragma mark - WeekViewControllerDelegate
@@ -337,8 +337,8 @@ typedef enum : NSUInteger
         [self.dateFormatter setDateFormat:@"MMMM"];
     
     NSString *str = [self.dateFormatter stringFromDate:date];
-    self.currentDateLabel.text = str;
-    [self.currentDateLabel sizeToFit];
+    self.currentDateLabel.title = str;
+    //[self.currentDateLabel sizeToFit];
 }
 
 - (void)calendarViewController:(CalendarViewController*)controller didSelectEvent:(EKEvent*)event
@@ -372,6 +372,23 @@ typedef enum : NSUInteger
 }
 
 -(IBAction)toMainViewController:(UIStoryboardSegue *)segue {
+
+}
+
+-(IBAction)moveToPreController:(id)sender
+{
+    NSDate *date = [self.calendarViewController centerDate];
+    
+    if ([self.calendarViewController isKindOfClass:DayViewController.class]){
+        [self moveToNewController:self.weekViewController atDate:date];
+    }
+    if ([self.calendarViewController isKindOfClass:WeekViewController.class]){
+        [self moveToNewController:self.monthViewController atDate:date];
+    }
+    if ([self.calendarViewController isKindOfClass:MonthViewController.class]) {
+        [self moveToNewController:self.yearViewController atDate:date];
+    }
+    
 }
 
 @end
