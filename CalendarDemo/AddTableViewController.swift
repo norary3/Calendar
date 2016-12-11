@@ -247,7 +247,6 @@ class AddTableViewController: UITableViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
-        NSLog("unwind")
         if segue.identifier == "AddUnwind" {
             let eventStore = EKEventStore()
             if let newEventTitle = self.titleTextField.text { self.eventTitle =  newEventTitle }
@@ -346,32 +345,4 @@ class AddTableViewController: UITableViewController {
         addAlert.addAction(exitAction)
         self.present(addAlert, animated: true, completion: nil)
     }
-    
-    @IBAction func addEvent(_ sender: AnyObject) {
-        NSLog("unwind")
-        
-        let eventStore = EKEventStore()
-        if let newEventTitle = self.titleTextField.text { self.eventTitle =  newEventTitle }
-        if let newEventLocation = self.locationTextField.text { self.eventLocation = newEventLocation }
-        if let newEventStart = self.startLabel.text?.toDateTime(self.dateFormatter) { self.eventStart = newEventStart }
-        if let newEventEnd = self.endLabel.text?.toDateTime(self.dateFormatter) { self.eventEnd = newEventEnd }
-        if let newEventURL = URL(string: self.urlTextField.text!) { self.eventURL = newEventURL }
-        if let newEventMemo = self.memoTextField.text { self.eventMemo = newEventMemo }
-        
-        if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
-            eventStore.requestAccess(to: .event, completion: {
-                granted, error in
-                if granted {
-                    self.createEvent(eventStore)
-                } else {
-                    self.failAlert()
-                }
-            })
-        } else {
-            self.createEvent(eventStore)
-        }
-            
-  
-    }
-    
 }

@@ -117,20 +117,22 @@ typedef enum : NSUInteger
 {
     UINavigationController *nc = (UINavigationController*)[segue destinationViewController];
     
-    if ([segue.identifier isEqualToString:@"dayPlannerSettingsSegue"]) {
-        WeekSettingsViewController *settingsViewController = (WeekSettingsViewController*)nc.topViewController;
-        WeekViewController *weekController = (WeekViewController*)self.calendarViewController;
-        settingsViewController.weekViewController = weekController;
-    }
-    else if ([segue.identifier isEqualToString:@"monthPlannerSettingsSegue"]) {
-        MonthSettingsViewController *settingsViewController = (MonthSettingsViewController*)nc.topViewController;
-        MonthViewController *monthController = (MonthViewController*)self.calendarViewController;
-        settingsViewController.monthPlannerView = monthController.monthPlannerView;
-    }
-    
-    BOOL doneButton = (self.traitCollection.verticalSizeClass != UIUserInterfaceSizeClassRegular || self.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassRegular);
-    if (doneButton) {
-         nc.topViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissSettings:)];
+    if (![segue.identifier isEqualToString:@"AddSeque"]) {
+        if ([segue.identifier isEqualToString:@"dayPlannerSettingsSegue"]) {
+            WeekSettingsViewController *settingsViewController = (WeekSettingsViewController*)nc.topViewController;
+            WeekViewController *weekController = (WeekViewController*)self.calendarViewController;
+            settingsViewController.weekViewController = weekController;
+        }
+        else if ([segue.identifier isEqualToString:@"monthPlannerSettingsSegue"]) {
+            MonthSettingsViewController *settingsViewController = (MonthSettingsViewController*)nc.topViewController;
+            MonthViewController *monthController = (MonthViewController*)self.calendarViewController;
+            settingsViewController.monthPlannerView = monthController.monthPlannerView;
+        }
+        
+        BOOL doneButton = (self.traitCollection.verticalSizeClass != UIUserInterfaceSizeClassRegular || self.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassRegular);
+        if (doneButton) {
+            nc.topViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissSettings:)];
+        }
     }
 }
 

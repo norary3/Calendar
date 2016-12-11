@@ -70,7 +70,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cvz-Tj-eOQ">
                             <connections>
-                                <segue destination="YZ9-ug-sg4" kind="presentation" id="raB-b6-2z1"/>
+                                <segue destination="YZ9-ug-sg4" kind="presentation" identifier="AddSeque" id="raB-b6-2z1"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -383,13 +383,12 @@
                     <navigationItem key="navigationItem" title="새로운 이벤트" id="cly-Tp-5j0">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MOc-5a-6TZ">
                             <connections>
-                                <segue destination="wDm-vQ-yZb" kind="unwind" unwindAction="toMainViewController:" id="rbf-aN-nDH"/>
+                                <segue destination="wDm-vQ-yZb" kind="unwind" unwindAction="toMainViewController:" id="OUW-wG-Urc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="uJl-Hv-HSH">
                             <connections>
-                                <action selector="addEvent:" destination="95o-AQ-S5f" id="mGp-gG-YoV"/>
-                                <segue destination="wDm-vQ-yZb" kind="unwind" identifier="AddUnwind" unwindAction="toMainViewController:" id="vyR-5r-eaS"/>
+                                <segue destination="wDm-vQ-yZb" kind="unwind" identifier="AddUnwind" unwindAction="toMainViewController:" id="OB9-TC-mXt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -414,6 +413,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YZ9-ug-sg4" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="1gB-cc-opz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
