@@ -1829,7 +1829,7 @@ static const CGFloat kMaxHourSlotHeight = 150.;
     if ([self.delegate respondsToSelector:@selector(dayPlannerView:attributedStringForDayHeaderAtDate:)]) {
         attrStr = [self.delegate dayPlannerView:self attributedStringForDayHeaderAtDate:date];
     }
-    
+    // LOOK HERE
     if (attrStr) {
         dayCell.dayLabel.attributedText = attrStr;
     }

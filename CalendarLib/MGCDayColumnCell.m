@@ -59,6 +59,13 @@ static const CGFloat dotSize = 4;
 		_dayLabel.minimumScaleFactor = .7;
 		[self.contentView addSubview:_dayLabel];
 		
+        _dayLabelSub = [[UILabel alloc] initWithFrame:CGRectZero];
+        _dayLabelSub.numberOfLines = 0;
+        _dayLabelSub.adjustsFontSizeToFitWidth = YES;
+        _dayLabelSub.minimumScaleFactor = .7;
+        _dayLabelSub.text = @"test";
+        [self.contentView addSubview:_dayLabelSub];
+        
 		_dotLayer = [CAShapeLayer layer];
 		CGPathRef dotPath = CGPathCreateWithEllipseInRect(CGRectMake(0, 0, dotSize, dotSize), NULL);
 		_dotLayer.path = dotPath;
@@ -118,7 +125,9 @@ static const CGFloat dotSize = 4;
 	if (self.headerHeight != 0) {
 		CGSize headerSize = CGSizeMake(self.contentView.bounds.size.width, self.headerHeight);
 		CGSize labelSize = CGSizeMake(headerSize.width - 2*kSpace, headerSize.height - (2 * dotSize + 2 * kSpace));
+        CGSize labelSubSize = CGSizeMake((headerSize.width - 2*kSpace)*2/3, (headerSize.height - (2 * dotSize + 2 * kSpace))*1/2);
 		self.dayLabel.frame = (CGRect) { 2, 0, labelSize };
+        self.dayLabelSub.frame = (CGRect) { 3, headerSize.width - kSpace/4, labelSubSize };
 		
 		self.dotLayer.position = CGPointMake(self.contentView.center.x, headerSize.height - 1.2 * dotSize);
 		self.dotLayer.fillColor = self.dotColor.CGColor;
@@ -136,6 +145,7 @@ static const CGFloat dotSize = 4;
 	
 	self.dotLayer.hidden = !(self.accessoryTypes & MGCDayColumnCellAccessoryDot) || self.headerHeight == 0;
 	self.dayLabel.hidden = (self.headerHeight == 0);
+    self.dayLabelSub.hidden = (self.headerHeight == 0);
 
     // border
     CGRect borderFrame = CGRectZero;

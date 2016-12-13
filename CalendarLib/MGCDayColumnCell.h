@@ -49,6 +49,7 @@ typedef enum : NSUInteger
 @interface MGCDayColumnCell : UICollectionViewCell
 
 @property (nonatomic, readonly) UILabel *dayLabel;						// label displaying dates
+@property (nonatomic, readonly) UILabel *dayLabelSub;						// sub label displaying lunar dates
 @property (nonatomic) MGCDayColumnCellAccessoryType accessoryTypes;		// presentation style of the view
 @property (nonatomic) UIColor *markColor;								// color of the mark around the date (default is black)
 @property (nonatomic) UIColor *dotColor;								// color of the dot (default is blue)

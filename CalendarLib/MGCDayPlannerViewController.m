@@ -78,9 +78,9 @@
     }
     if (!self.headerView && !self.showsWeekHeaderView) {
         self.dayPlannerView.numberOfVisibleDays = 7;
-        self.dayPlannerView.dayHeaderHeight = 90;
+        //self.dayPlannerView.dayHeaderHeight = 90;
         self.dayPlannerView.visibleDays.start = [[NSDate date] dateByAddingTimeInterval: 3 * 24 * 60 * 60];
-        [self setupHeaderView];
+        //[self setupHeaderView];
     }
 }
 
