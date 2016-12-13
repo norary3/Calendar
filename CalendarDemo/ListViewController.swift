@@ -26,8 +26,6 @@ class ListViewController: UITableViewController {
 
     //override func viewDidAppear(animated: Bool) {
     override func viewDidLoad() {
-        
-        
         switch EKEventStore.authorizationStatus(for: .event) {
             case .authorized:
                 readEvents()
@@ -208,6 +206,8 @@ class ListViewController: UITableViewController {
         myEvents = []
         readEvents()
         self.tableView.reloadData()
+        let indexPath = IndexPath(row: 0, section: 10) // section : today's section
+        self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     

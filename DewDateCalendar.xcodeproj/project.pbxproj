@@ -360,7 +360,7 @@
 				722ABE331CB19BAC00713ED3 /* LICENSE */,
 				721A12A11CB585CF00749F18 /* CHANGELOG.md */,
 				72CD8BAA18228A7500F12339 /* Lib */,
-				72B5D8F7180D73E0004ADB86 /* Demo */,
+				72B5D8F7180D73E0004ADB86 /* DewDate */,
 				72B5D910180D73E0004ADB86 /* Tests */,
 				B1BFBD581DF6ECCC0006FCDC /* AutoEventAddActionExt */,
 				72B5D8F0180D73E0004ADB86 /* Frameworks */,
@@ -394,7 +394,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		72B5D8F7180D73E0004ADB86 /* Demo */ = {
+		72B5D8F7180D73E0004ADB86 /* DewDate */ = {
 			isa = PBXGroup;
 			children = (
 				72B5D900180D73E0004ADB86 /* AppDelegate.h */,
@@ -426,7 +426,7 @@
 				7275C49F1C46E87B0036C9A3 /* Launch Screen.storyboard */,
 				A55015A31DF97C3400413CA1 /* DewDateCalendarDemo-Bridging-Header.h */,
 			);
-			name = Demo;
+			name = DewDate;
 			path = CalendarDemo;
 			sourceTree = "<group>";
 		};

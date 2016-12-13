@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rig-xm-09W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Rig-xm-09W">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -78,7 +77,7 @@
                             <barButtonItem image="Bulleted List Filled" id="Ev6-XR-Lcf" userLabel="List">
                                 <inset key="imageInsets" minX="1" minY="5" maxX="1" maxY="5"/>
                                 <connections>
-                                    <segue destination="gDC-ft-7gC" kind="showDetail" id="nqP-2z-CLA"/>
+                                    <segue destination="SFf-ST-Gg6" kind="show" id="pwO-6P-FRI"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>
@@ -392,12 +391,12 @@
                     <navigationItem key="navigationItem" title="새로운 이벤트" id="cly-Tp-5j0">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="MOc-5a-6TZ">
                             <connections>
-                                <segue destination="wDm-vQ-yZb" kind="unwind" unwindAction="toMainViewController:" id="OUW-wG-Urc"/>
+                                <action selector="cancel:" destination="95o-AQ-S5f" id="a3E-CL-GEB"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="uJl-Hv-HSH">
                             <connections>
-                                <segue destination="wDm-vQ-yZb" kind="unwind" identifier="AddUnwind" unwindAction="toMainViewController:" id="OB9-TC-mXt"/>
+                                <action selector="add:" destination="95o-AQ-S5f" id="eBM-gl-PqF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -413,9 +412,8 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P2e-Pu-R3j" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="wDm-vQ-yZb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2137.5" y="-525"/>
+            <point key="canvasLocation" x="1528" y="-525"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7fo-6R-iYt">
@@ -434,7 +432,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="woR-hu-sBl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756.875" y="-525"/>
+            <point key="canvasLocation" x="842" y="-525"/>
         </scene>
         <!--List View Controller-->
         <scene sceneID="Y6S-v4-3Rc">
@@ -449,11 +447,11 @@
                                 <rect key="frame" x="0.0" y="56" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TWA-QU-QvI" id="zAu-gD-I3f">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CS7-K1-OBP">
-                                            <rect key="frame" x="83" y="11" width="42" height="21"/>
+                                            <rect key="frame" x="83" y="11.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -466,16 +464,16 @@
                                             </constraints>
                                         </view>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BgO-rP-sqe">
-                                            <rect key="frame" x="34" y="6" width="31" height="30"/>
+                                            <rect key="frame" x="34" y="6.5" width="31" height="29.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mus-Bm-yCh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="15"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="14.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RIp-EX-cC4">
-                                                    <rect key="frame" x="0.0" y="15" width="31" height="15"/>
+                                                    <rect key="frame" x="0.0" y="14.5" width="31" height="15"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="15" id="qhj-zm-L4T"/>
                                                     </constraints>
@@ -512,33 +510,31 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="DewDate" id="iVK-1N-3Hr">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="UKY-cC-Ph8"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="UKY-cC-Ph8">
+                                <connections>
+                                    <segue destination="YZ9-ug-sg4" kind="presentation" id="3lD-jD-Uze"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="Bulleted List Filled" id="XbQ-jA-mWI" userLabel="List">
+                                <inset key="imageInsets" minX="1" minY="5" maxX="1" maxY="5"/>
+                                <connections>
+                                    <segue destination="9tu-DB-VYc" kind="unwind" unwindAction="toMainViewController:" id="H6q-IM-7xZ"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4wh-nP-JDL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="9tu-DB-VYc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="737" y="-525"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="zWi-2Q-Q8d">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gDC-ft-7gC" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="T7v-eS-fT0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="SFf-ST-Gg6" kind="relationship" relationship="rootViewController" id="ZOe-F0-MEe"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PEw-gj-eMQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="353" y="-525"/>
+            <point key="canvasLocation" x="1166" y="206"/>
         </scene>
     </scenes>
     <resources>
         <image name="Bulleted List Filled" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="3lD-jD-Uze"/>
+    </inferredMetricsTieBreakers>
 </document>

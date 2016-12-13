@@ -116,23 +116,24 @@ typedef enum : NSUInteger
 - (void)prepareForSegue:(UIStoryboardSegue*)segue sender:(id)sender
 {
     UINavigationController *nc = (UINavigationController*)[segue destinationViewController];
-    
-    if (![segue.identifier isEqualToString:@"AddSeque"]) {
-        if ([segue.identifier isEqualToString:@"dayPlannerSettingsSegue"]) {
-            WeekSettingsViewController *settingsViewController = (WeekSettingsViewController*)nc.topViewController;
-            WeekViewController *weekController = (WeekViewController*)self.calendarViewController;
-            settingsViewController.weekViewController = weekController;
-        }
-        else if ([segue.identifier isEqualToString:@"monthPlannerSettingsSegue"]) {
-            MonthSettingsViewController *settingsViewController = (MonthSettingsViewController*)nc.topViewController;
-            MonthViewController *monthController = (MonthViewController*)self.calendarViewController;
-            settingsViewController.monthPlannerView = monthController.monthPlannerView;
-        }
+    if ([segue.identifier isEqualToString:@"dayPlannerSettingsSegue"]) {
+        WeekSettingsViewController *settingsViewController = (WeekSettingsViewController*)nc.topViewController;
+        WeekViewController *weekController = (WeekViewController*)self.calendarViewController;
+        settingsViewController.weekViewController = weekController;
         
-        BOOL doneButton = (self.traitCollection.verticalSizeClass != UIUserInterfaceSizeClassRegular || self.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassRegular);
-        if (doneButton) {
-            nc.topViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissSettings:)];
-        }
+    }
+    else if ([segue.identifier isEqualToString:@"monthPlannerSettingsSegue"]) {
+        MonthSettingsViewController *settingsViewController = (MonthSettingsViewController*)nc.topViewController;
+        MonthViewController *monthController = (MonthViewController*)self.calendarViewController;
+        settingsViewController.monthPlannerView = monthController.monthPlannerView;
+        [self setDoneButtonAt: nc];
+    }
+}
+
+- (void)setDoneButtonAt:(UINavigationController*)nc{
+    BOOL doneButton = (self.traitCollection.verticalSizeClass != UIUserInterfaceSizeClassRegular || self.traitCollection.horizontalSizeClass != UIUserInterfaceSizeClassRegular);
+    if (doneButton) {
+        nc.topViewController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(dismissSettings:)];
     }
 }
 
@@ -208,7 +209,7 @@ typedef enum : NSUInteger
 {
     self.settingsButtonItem.enabled = NO;
 
-    [self.calendarViewController willMoveToParentViewController:nil];
+    [self.calendarViewController willMoveToParentViewController:self.calendarViewController]; //was nil
     [self addChildViewController:newController];
     
     [self transitionFromViewController:self.calendarViewController toViewController:newController duration:.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^
@@ -217,8 +218,8 @@ typedef enum : NSUInteger
          newController.view.hidden = YES;
      } completion:^(BOOL finished)
      {
-         [self.calendarViewController removeFromParentViewController];
-         [newController didMoveToParentViewController:self];
+         //[self.calendarViewController removeFromParentViewController];
+         //[newController didMoveToParentViewController:self];
          self.calendarViewController = newController;
          [newController moveToDate:date animated:NO];
          newController.view.hidden = NO;
@@ -227,6 +228,24 @@ typedef enum : NSUInteger
              self.settingsButtonItem.enabled = YES;
          }
      }];
+    
+    /*[self transitionFromViewController:self.calendarViewController toViewController:newController duration:.5 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^
+     {
+     newController.view.frame = self.containerView.bounds;
+     newController.view.hidden = YES;
+     } completion:^(BOOL finished)
+     {
+     //[self.calendarViewController removeFromParentViewController];
+     //[newController didMoveToParentViewController:self];
+     self.calendarViewController = newController;
+     [newController moveToDate:date animated:NO];
+     newController.view.hidden = NO;
+     
+     if ([self.calendarViewController isKindOfClass:WeekViewController.class] || [self.calendarViewController isKindOfClass:MonthViewController.class]) {
+     self.settingsButtonItem.enabled = YES;
+     }
+     }];
+*/
 }
 
 #pragma mark - Actions

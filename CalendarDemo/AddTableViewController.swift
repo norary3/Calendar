@@ -153,6 +153,36 @@ class AddTableViewController: UITableViewController {
         self.endLabel.text = eventEnd.toTimeString(self.dateFormatter)
     }
     
+    @IBAction func cancel(_ sender: AnyObject) {
+        self.dismiss(animated: true) {
+        }
+    }
+    
+    @IBAction func add(_ sender: AnyObject) {
+        self.dismiss(animated: true) {
+            let eventStore = EKEventStore()
+            if let newEventTitle = self.titleTextField.text { self.eventTitle =  newEventTitle }
+            if let newEventLocation = self.locationTextField.text { self.eventLocation = newEventLocation }
+            if let newEventStart = self.startLabel.text?.toDateTime(self.dateFormatter) { self.eventStart = newEventStart }
+            if let newEventEnd = self.endLabel.text?.toDateTime(self.dateFormatter) { self.eventEnd = newEventEnd }
+            if let newEventURL = URL(string: self.urlTextField.text!) { self.eventURL = newEventURL }
+            if let newEventMemo = self.memoTextField.text { self.eventMemo = newEventMemo }
+            
+            if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
+                eventStore.requestAccess(to: .event, completion: {
+                    granted, error in
+                    if granted {
+                        self.createEvent(eventStore)
+                    } else {
+                        self.failAlert()
+                    }
+                })
+            } else {
+                self.createEvent(eventStore)
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //print("Add View : HI")
@@ -247,29 +277,6 @@ class AddTableViewController: UITableViewController {
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destinationViewController.
      // Pass the selected object to the new view controller.
-        if segue.identifier == "AddUnwind" {
-            let eventStore = EKEventStore()
-            if let newEventTitle = self.titleTextField.text { self.eventTitle =  newEventTitle }
-            if let newEventLocation = self.locationTextField.text { self.eventLocation = newEventLocation }
-            if let newEventStart = self.startLabel.text?.toDateTime(self.dateFormatter) { self.eventStart = newEventStart }
-            if let newEventEnd = self.endLabel.text?.toDateTime(self.dateFormatter) { self.eventEnd = newEventEnd }
-            if let newEventURL = URL(string: self.urlTextField.text!) { self.eventURL = newEventURL }
-            if let newEventMemo = self.memoTextField.text { self.eventMemo = newEventMemo }
-            
-            if (EKEventStore.authorizationStatus(for: .event) != EKAuthorizationStatus.authorized) {
-                eventStore.requestAccess(to: .event, completion: {
-                    granted, error in
-                    if granted {
-                        self.createEvent(eventStore)
-                    } else {
-                        self.failAlert()
-                    }
-                })
-            } else {
-                self.createEvent(eventStore)
-            }
-
-        }
     }
     
     
