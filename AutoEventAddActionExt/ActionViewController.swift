@@ -217,10 +217,8 @@ class ActionTableViewController: UITableViewController {
                  */
                 
                 var titleFlag = false
-                var locationFlag = false
                 var startFlag = false
                 var endFlag = false
-                var memoFlag = false
                 
                 let lines = parsingString.components(separatedBy: "\n")
                 for line in lines {
@@ -233,7 +231,6 @@ class ActionTableViewController: UITableViewController {
                             self.eventTitle = back
                         case "위치",
                              "장소" :
-                            locationFlag = true
                             self.eventLocation = back
                         case "시작" :
                             startFlag = true
@@ -247,11 +244,24 @@ class ActionTableViewController: UITableViewController {
                         default:
                             continue
                         }
-                        if endFlag == false {
-                            self.eventEnd = (self.cal as NSCalendar).date(byAdding: .NSHourCalendarUnit, value: 2, to: self.eventStart, options: .wrapComponents)!
-                        }
                     }
                     self.eventMemo += line + "\n"
+                }
+                
+                if titleFlag == false {
+                    self.title = "DewDate 일정"
+                }
+                
+                if startFlag == false {
+                    if endFlag == false {
+                        self.eventStart = Date.init()
+                    } else {
+                        self.eventStart = self.cal.date(byAdding: .hour, value: -2, to: self.eventEnd)!
+                    }
+                }
+                
+                if endFlag == false {
+                    self.eventEnd = self.cal.date(byAdding: .hour, value: 2, to: self.eventStart)!
                 }
                 
                 // 메인스레드를 통하여 화면의 TextView에 갱신처리

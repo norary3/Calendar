@@ -35,6 +35,10 @@
 		72EF08181A3DB8C6005699CA /* YearViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EF080E1A3DB8C6005699CA /* YearViewController.m */; };
 		8632002716B63895D4EACE67 /* Pods_DewDateCalendarDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F237CDB2A8D669AD618ACFC /* Pods_DewDateCalendarDemo.framework */; };
 		A55015A51DF97C3500413CA1 /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55015A41DF97C3500413CA1 /* AddTableViewController.swift */; };
+		B14630C21DFFB80B0056AA91 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14630C11DFFB80B0056AA91 /* Classes.swift */; };
+		B166A50B1DFD4A2700893331 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166A50A1DFD4A2700893331 /* ListViewController.swift */; };
+		B166A50D1DFD4A8D00893331 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166A50C1DFD4A8D00893331 /* Events.swift */; };
+		B166A50F1DFD4AD700893331 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B166A50E1DFD4AD700893331 /* EventTableViewCell.swift */; };
 		B1BFBD5A1DF6ECCC0006FCDC /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BFBD591DF6ECCC0006FCDC /* ActionViewController.swift */; };
 		B1BFBD611DF6ECCC0006FCDC /* AutoEventAddActionExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B1BFBD571DF6ECCC0006FCDC /* AutoEventAddActionExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		BC32A4601D30FED600AB19D7 /* DayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC32A45F1D30FED600AB19D7 /* DayViewController.m */; };
@@ -186,6 +190,10 @@
 		9699699D1FED90B74C9D9E6D /* Pods-DewDateCalendarDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DewDateCalendarDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DewDateCalendarDemo/Pods-DewDateCalendarDemo.release.xcconfig"; sourceTree = "<group>"; };
 		A55015A31DF97C3400413CA1 /* DewDateCalendarDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DewDateCalendarDemo-Bridging-Header.h"; sourceTree = "<group>"; };
 		A55015A41DF97C3500413CA1 /* AddTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTableViewController.swift; sourceTree = "<group>"; };
+		B14630C11DFFB80B0056AA91 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
+		B166A50A1DFD4A2700893331 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		B166A50C1DFD4A8D00893331 /* Events.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		B166A50E1DFD4AD700893331 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		B1BFBD571DF6ECCC0006FCDC /* AutoEventAddActionExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AutoEventAddActionExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BFBD591DF6ECCC0006FCDC /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		B1BFBD5E1DF6ECCC0006FCDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -408,7 +416,11 @@
 				7258E8B01A5A98DD007F88AF /* WeekSettingsViewController.m */,
 				72E9B9171C91E3520070EDD3 /* MonthSettingsViewController.h */,
 				72E9B9181C91E3520070EDD3 /* MonthSettingsViewController.m */,
+				B166A50A1DFD4A2700893331 /* ListViewController.swift */,
+				B166A50E1DFD4AD700893331 /* EventTableViewCell.swift */,
 				A55015A41DF97C3500413CA1 /* AddTableViewController.swift */,
+				B166A50C1DFD4A8D00893331 /* Events.swift */,
+				B14630C11DFFB80B0056AA91 /* Classes.swift */,
 				72B5D903180D73E0004ADB86 /* Images.xcassets */,
 				72B5D8F8180D73E0004ADB86 /* Supporting Files */,
 				7275C49F1C46E87B0036C9A3 /* Launch Screen.storyboard */,
@@ -699,11 +711,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B166A50D1DFD4A8D00893331 /* Events.swift in Sources */,
 				72E9B9191C91E3520070EDD3 /* MonthSettingsViewController.m in Sources */,
+				B166A50B1DFD4A2700893331 /* ListViewController.swift in Sources */,
 				72EF07FF1A3D9DF8005699CA /* WeekViewController.m in Sources */,
+				B166A50F1DFD4AD700893331 /* EventTableViewCell.swift in Sources */,
 				72EF08151A3DB8C6005699CA /* MonthViewController.m in Sources */,
 				72EF08181A3DB8C6005699CA /* YearViewController.m in Sources */,
 				72B5D902180D73E0004ADB86 /* AppDelegate.m in Sources */,
+				B14630C21DFFB80B0056AA91 /* Classes.swift in Sources */,
 				721DC18918219C4D00F9470C /* MainViewController.m in Sources */,
 				72B5D8FE180D73E0004ADB86 /* main.m in Sources */,
 				7258E8B11A5A98DD007F88AF /* WeekSettingsViewController.m in Sources */,
@@ -870,7 +886,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalendarDemo/DewDateCalendar-Prefix.pch";
 				INFOPLIST_FILE = "CalendarDemo/DewDateCalendar-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hiddenTrack.DewDateCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -897,7 +913,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CalendarDemo/DewDateCalendar-Prefix.pch";
 				INFOPLIST_FILE = "CalendarDemo/DewDateCalendar-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = co.hiddenTrack.DewDateCalendar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
