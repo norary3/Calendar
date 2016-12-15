@@ -63,7 +63,7 @@ static const CGFloat dotSize = 4;
         _dayLabelSub.numberOfLines = 0;
         _dayLabelSub.adjustsFontSizeToFitWidth = YES;
         _dayLabelSub.minimumScaleFactor = .7;
-        _dayLabelSub.text = @"test";
+        //_dayLabelSub.text = @"test";
         [self.contentView addSubview:_dayLabelSub];
         
 		_dotLayer = [CAShapeLayer layer];
