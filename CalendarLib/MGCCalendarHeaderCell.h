@@ -11,6 +11,7 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *dayNumberLabel;
 @property (nonatomic, strong) IBOutlet UILabel *dayNameLabel;
+@property (nonatomic, strong) IBOutlet UILabel *lunarLabel;
 @property (nonatomic, strong) NSDate *date;
 
 @end

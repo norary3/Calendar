@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, HeaderSection){
 static NSString *kCellIdentifier = @"CalendarHeaderCellId";
 static NSInteger kNumberOfDaysToDisplay = 7; //one week
 static CGFloat kDetailsLabelHeight = 20;
-static CGFloat kItemHeight = 60;
+static CGFloat kItemHeight = 90;
 
 #pragma mark - Initialization
 
@@ -222,7 +222,12 @@ static CGFloat kItemHeight = 60;
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     //NSLog(@"is here?");
     MGCCalendarHeaderCell *cell = (MGCCalendarHeaderCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    [self selectDate:cell.date];
+    if(self.dayPlannerView.numberOfVisibleDays==7){
+        //NSLog(@"is 7?");
+        [self.dayPlannerView testMethoddidSelectDayCellAtDate:cell.date]; //TODO : CHANGE NAME
+    } else {
+        [self selectDate:cell.date];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

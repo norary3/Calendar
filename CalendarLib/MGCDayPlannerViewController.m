@@ -70,18 +70,21 @@
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     // LOOK AT IT
+    if (!self.headerView){
+        self.dayPlannerView.dayHeaderHeight = 100;
+        if (!self.showsWeekHeaderView) {
+            self.dayPlannerView.numberOfVisibleDays = 1;
+            self.dayPlannerView.visibleDays.start = [NSDate date];
+            [self setupHeaderView];
+        } else {
+            self.dayPlannerView.numberOfVisibleDays = 7;
+            self.dayPlannerView.visibleDays.start = [[NSDate date] dateByAddingTimeInterval: 3 * 24 * 60 * 60];
+            [self setupHeaderView];
+        }
+    }
+    
     if (!self.headerView && self.showsWeekHeaderView) {
-        self.dayPlannerView.numberOfVisibleDays = 1;
-        self.dayPlannerView.dayHeaderHeight = 90;
-        self.dayPlannerView.visibleDays.start = [NSDate date];
-        [self setupHeaderView];
-    }
-    if (!self.headerView && !self.showsWeekHeaderView) {
-        self.dayPlannerView.numberOfVisibleDays = 7;
-        //self.dayPlannerView.dayHeaderHeight = 90;
-        self.dayPlannerView.visibleDays.start = [[NSDate date] dateByAddingTimeInterval: 3 * 24 * 60 * 60];
-        //[self setupHeaderView];
-    }
+            }
 }
 
 - (void)setupHeaderView{

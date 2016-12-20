@@ -264,6 +264,10 @@ class ActionTableViewController: UITableViewController {
                     self.eventEnd = self.cal.date(byAdding: .hour, value: 2, to: self.eventStart)!
                 }
                 
+                if self.eventStart == self.eventEnd {
+                    self.eventEnd = self.cal.date(byAdding: .hour, value: 2, to: self.eventStart)!
+                }
+                
                 // 메인스레드를 통하여 화면의 TextView에 갱신처리
                 DispatchQueue.main.async{
                     self.titleTextField.text = self.eventTitle

@@ -308,6 +308,8 @@ typedef NS_ENUM(NSUInteger, MGCDayPlannerTimeMark) {
  */
 - (MGCEventView*)dequeueReusableViewWithIdentifier:(NSString*)identifier forEventOfType:(MGCEventType)type atIndex:(NSUInteger)index date:(NSDate*)date;
 
+//LOOK
+- (void)testMethoddidSelectDayCellAtDate:(NSDate*)date; //TODO : CHANGE NAME
 
 /*!
 	@group Getting the state of the day planner view
@@ -679,5 +681,7 @@ typedef NS_ENUM(NSUInteger, MGCDayPlannerTimeMark) {
 				you programmatically deselect the event.
  */
 - (void)dayPlannerView:(MGCDayPlannerView*)view didDeselectEventOfType:(MGCEventType)type atIndex:(NSUInteger)index date:(NSDate*)date;
+
+- (void)testMethoddidSelectDayCellAtDate:(NSDate*)date;//TODO : CHANGE NAME
 
 @end

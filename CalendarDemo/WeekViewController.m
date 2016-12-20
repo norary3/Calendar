@@ -54,8 +54,7 @@
         [self.delegate calendarViewController:self didShowDate:date];
     }
 }
-
-//overide method in MGCMonthPlannerEKViewController.m
+/*
 - (void)dayPlannerView:(MGCDayPlannerView*)view didSelectDayCellAtDate:(NSDate *)date
 {
     NSLog(@"out if");
@@ -66,7 +65,8 @@
         [self.delegate dayPlannerView:self didSelectDayCellAtDate:date];
     }
 }
-
+*/
+ 
 - (BOOL)dayPlannerView:(MGCDayPlannerView*)view canMoveEventOfType:(MGCEventType)type atIndex:(NSUInteger)index date:(NSDate*)date toType:(MGCEventType)targetType date:(NSDate*)targetDate
 {
 	NSDateComponents *comps = [self.calendar components:NSCalendarUnitWeekday fromDate:targetDate];
@@ -185,6 +185,22 @@
 {
     NSDate *date = [self.dayPlannerView dateAtPoint:self.dayPlannerView.center rounded:NO];
     return date;
+}
+
+// public //TODO : CHANGE NAME
+- (void)testMethoddidSelectDayCellAtDate:(NSDate*)date{
+    /*
+    if ([self.delegate respondsToSelector:@selector(dayPlannerView:didSelectDayCellAtDate:)]) {
+        NSLog(@"in if");
+        // call monthViewController:didSelectDayCellAtDate: in MainViewController.m
+        NSDate *date = [self centerDate];
+        [self.delegate dayPlannerView:self didSelectDayCellAtDate:date];
+    }
+     */
+    if ([self.delegate respondsToSelector:@selector(testMethoddidSelectDayCellAtDate:)]) {
+        // call  in MainViewController.m
+        [self.delegate testMethoddidSelectDayCellAtDate:date];
+    }
 }
 
 @end

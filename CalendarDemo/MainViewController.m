@@ -155,7 +155,7 @@ typedef enum : NSUInteger
     if (_dayViewController == nil) {
         _dayViewController = [[DayViewController alloc]initWithEventStore:self.eventStore];
         _dayViewController.calendar = self.calendar;
-        _dayViewController.showsWeekHeaderView = YES;
+        _dayViewController.showsWeekHeaderView = NO;
         _dayViewController.delegate = self;
     }
     return _dayViewController;
@@ -167,7 +167,7 @@ typedef enum : NSUInteger
         _weekViewController = [[WeekViewController alloc]initWithEventStore:self.eventStore];
         _weekViewController.calendar = self.calendar;
         //LOOK AT IT
-        _weekViewController.showsWeekHeaderView = NO;
+        _weekViewController.showsWeekHeaderView = YES;
         _weekViewController.delegate = self;
     }
     return _weekViewController;
@@ -410,6 +410,13 @@ typedef enum : NSUInteger
         [self moveToNewController:self.yearViewController atDate:date];
     }
     
+}
+
+// public //TODO : CHANGE NAME
+- (void)testMethoddidSelectDayCellAtDate:(NSDate*)date{
+    CalendarViewController *controllerNew = [self controllerForViewType:CalendarViewDayType];
+    [self moveToNewController:controllerNew atDate:date];
+    self.viewChooser.selectedSegmentIndex = CalendarViewDayType;
 }
 
 @end

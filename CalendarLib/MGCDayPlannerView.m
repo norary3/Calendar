@@ -914,7 +914,7 @@ static const CGFloat kMaxHourSlotHeight = 150.;
 		_dayColumnsView.showsHorizontalScrollIndicator = NO;
 		_dayColumnsView.decelerationRate = UIScrollViewDecelerationRateFast;
 		_dayColumnsView.scrollEnabled = NO;
-		_dayColumnsView.allowsSelection = NO;
+		_dayColumnsView.allowsSelection = YES; //LOOK was no
 		
 		[_dayColumnsView registerClass:MGCDayColumnCell.class forCellWithReuseIdentifier:DayColumnCellReuseIdentifier];
 	}
@@ -931,6 +931,7 @@ static const CGFloat kMaxHourSlotHeight = 150.;
         [self.delegate dayPlannerView:self didSelectDayCellAtDate:date];
     }
 }
+
 - (UIScrollView*)timeScrollView
 {
 	if (!_timeScrollView) {
@@ -1860,6 +1861,8 @@ static const CGFloat kMaxHourSlotHeight = 150.;
         dayCell.dayLabel.attributedText = as;
     }
     
+    //dayCell.dayLabelSub.text=@"test";
+    
     if ([self.loadingDays containsObject:date]) {
         [dayCell setActivityIndicatorVisible:YES];
     }
@@ -2411,4 +2414,13 @@ static const CGFloat kMaxHourSlotHeight = 150.;
     return CGSizeMake(dayColumnSize.width, self.bounds.size.height);
 }
 
+// public //TODO : CHANGE NAME
+- (void)testMethoddidSelectDayCellAtDate:(NSDate*)date{
+    if ([self.delegate respondsToSelector:@selector(testMethoddidSelectDayCellAtDate:)]) {
+        //NSLog(@"in if");
+        // call monthViewController:didSelectDayCellAtDate: in MainViewController.m
+        [self.delegate testMethoddidSelectDayCellAtDate:date];
+    }
+    //NSLog(@"is wow?");
+}
 @end

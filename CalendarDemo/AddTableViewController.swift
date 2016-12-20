@@ -93,11 +93,14 @@ extension Date
 
 class AddTableViewController: UITableViewController {
     var convertingString: String?
-    let cal = Calendar.current
-    
+
+    let solCal = Calendar.init(identifier: .gregorian)
+    let lunarCal = Calendar.init(identifier: .chinese)
+
     var eventTitle:String = ""
     var eventLocation = ""
     var eventIsAllDay = false
+    var isLunar = false
     var eventStart:Date = Date()
     var eventEnd:Date = Date().addingTimeInterval(60 * 60)
     //var eventRepeat:EKRecurrenceRule? = nil
@@ -139,6 +142,25 @@ class AddTableViewController: UITableViewController {
         }
     }
     
+    @IBAction func isLunarSwitch(_ sender: Any) {
+        let lunarwitch = sender as! UISwitch
+        self.isLunar = lunarwitch.isOn
+        if self.isLunar {
+            //Specify Format of String to Parsez
+            self.dateFormatter.calendar = lunarCal
+            self.startDatePickerValue.calendar = lunarCal
+            self.endDatePickerValue.calendar = lunarCal
+        } else {
+            //Specify Format of String to Parsez
+            self.dateFormatter.calendar = solCal
+            self.startDatePickerValue.calendar = solCal
+            self.endDatePickerValue.calendar = solCal
+        }
+        self.startLabel.text = self.eventStart.toTimeString(self.dateFormatter)
+        self.endLabel.text = self.eventEnd.toTimeString(self.dateFormatter)
+        
+    }
+    
     @IBOutlet weak var startDatePickerValue: UIDatePicker!
     @IBAction func startDatePicker(_ sender: AnyObject) {
         //self.endCheck()
@@ -163,8 +185,9 @@ class AddTableViewController: UITableViewController {
             let eventStore = EKEventStore()
             if let newEventTitle = self.titleTextField.text { self.eventTitle =  newEventTitle }
             if let newEventLocation = self.locationTextField.text { self.eventLocation = newEventLocation }
-            if let newEventStart = self.startLabel.text?.toDateTime(self.dateFormatter) { self.eventStart = newEventStart }
-            if let newEventEnd = self.endLabel.text?.toDateTime(self.dateFormatter) { self.eventEnd = newEventEnd }
+            self.eventStart = self.startDatePickerValue.date
+            self.eventEnd = self.endDatePickerValue.date
+            
             if let newEventURL = URL(string: self.urlTextField.text!) { self.eventURL = newEventURL }
             if let newEventMemo = self.memoTextField.text { self.eventMemo = newEventMemo }
             
@@ -216,7 +239,7 @@ class AddTableViewController: UITableViewController {
         case 0:
             return 2
         case 1:
-            return 5
+            return 6
         case 2:
             return 2
         default:
@@ -285,12 +308,12 @@ class AddTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath {
-        case IndexPath(row: 1, section: 1):
+        case IndexPath(row: 2, section: 1):
             startDatePickerValue.setDate(self.eventStart, animated: false)
             if StartPickerRowHeight < 100 { StartPickerRowHeight = 210.0 }
             else { StartPickerRowHeight = 0.0 }
             self.tableView.reloadData()
-        case IndexPath(row: 3, section: 1):
+        case IndexPath(row: 4, section: 1):
             endDatePickerValue.setDate(self.eventEnd, animated: false)
             if EndPickerRowHeight < 100 { EndPickerRowHeight = 210.0 }
             else { EndPickerRowHeight = 0.0 }
@@ -307,9 +330,9 @@ class AddTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         switch indexPath {
-        case IndexPath(row: 2, section: 1):
+        case IndexPath(row: 3, section: 1):
             return StartPickerRowHeight
-        case IndexPath(row: 4, section: 1):
+        case IndexPath(row: 5, section: 1):
             return EndPickerRowHeight
         case IndexPath(row: 1, section: 2):
             return 150.0

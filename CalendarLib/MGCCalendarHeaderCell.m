@@ -48,10 +48,24 @@
     
     self.dayNumberLabel.text = [dateFormatter stringFromDate:date];
     
+    //lunar in day cal header
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:NSCalendarUnitWeekday fromDate:date];
+    int weekday = (int) [comps weekday];
+    // if it is Sunday
+    if ( weekday % 7 == 1 || weekday % 7 == 4  || weekday % 7 == 0 ) {
+        NSCalendar *lunarCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierChinese];
+        [dateFormatter setCalendar:lunarCalendar];
+        [dateFormatter setDateFormat:@"M.d"];
+        
+        self.lunarLabel.text = [dateFormatter stringFromDate:date];
+    } else {
+        self.lunarLabel.text = @"";
+    }
+    
     //the cell is the current day
     self.today = [[NSCalendar currentCalendar] isDate:[NSDate date] inSameDayAsDate:date];
     
-    //tthe cell is a weekend day
+    //the cell is a weekend day
     self.weekend = [[NSCalendar currentCalendar] isDateInWeekend:date];
 }
 
